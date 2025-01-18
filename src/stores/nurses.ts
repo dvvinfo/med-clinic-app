@@ -1,36 +1,31 @@
 import { defineStore } from 'pinia';
 import { ref, watch } from 'vue';
 import mockData from '@/assets/data/mockData.json';
+import type { INurse } from '@/types/nurse';
 
-// Интерфейсы
-export interface Nurse {
-  id: number;
-  name: string;
-  department: string;
-}
 
 // Сохранение данных в localStorage
-const saveDataToLocalStorage = (nurses: Nurse[]) => {
+const saveDataToLocalStorage = (nurses: INurse[]) => {
   localStorage.setItem('nurses', JSON.stringify(nurses));
 };
 
 // Загрузка данных из localStorage или из mockData
-const loadDataFromLocalStorage = (): Nurse[] => {
+const loadDataFromLocalStorage = (): INurse[] => {
   const storedNurses = localStorage.getItem('nurses');
   return storedNurses ? JSON.parse(storedNurses) : mockData.nurses;
 };
 
 export const useNursesStore = defineStore('nurses', () => {
   // Состояние
-  const nurses = ref<Nurse[]>(loadDataFromLocalStorage());
+  const nurses = ref<INurse[]>(loadDataFromLocalStorage());
 
   // Действия
-  const addNurse = (nurse: Nurse) => {
+  const addNurse = (nurse: INurse) => {
     nurses.value = [...nurses.value, { ...nurse }]; // Создаем новый массив
     saveDataToLocalStorage(nurses.value);
   };
 
-  const editNurse = (updatedNurse: Nurse) => {
+  const editNurse = (updatedNurse: INurse) => {
     const index = nurses.value.findIndex((n) => n.id === updatedNurse.id);
     if (index !== -1) {
       const updatedNurses = [...nurses.value];
