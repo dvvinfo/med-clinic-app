@@ -16,4 +16,8 @@ const menuItems = [
   </nav>
 </template>
 
-<style></style>
+<style scoped lang="postcss">
+.router-link-active {
+  @apply font-bold;
+}
+</style>
