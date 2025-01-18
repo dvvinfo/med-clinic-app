@@ -1,0 +1,10 @@
+{
+  "doctors": [
+    { "id": 1, "name": "Иван Иванов", "department": "Кардиологическое", "isHead": true },
+    { "id": 2, "name": "Петр Петров", "department": "Хирургическое", "isHead": false }
+  ],
+  "nurses": [
+    { "id": 1, "name": "Анна Сергеева", "department": "Кардиологическое" },
+    { "id": 2, "name": "Мария Иванова", "department": "Хирургическое" }
+  ]
+}
